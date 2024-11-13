@@ -1,26 +1,35 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import pokemonApi from '../pokemonApi';
 
-export const fetchPokemons = createAsyncThunk(
-  'pokemon/fetchPokemons',
-  async (page = 0) => {
-    const response = await pokemonApi.get(`/pokemon?limit=10&offset=${page * 10}`);
-    return response.data.results;
+export const fetchPokemon = createAsyncThunk(
+  'pokemon/fetchPokemon',
+  async (id) => {
+    const response = await pokemonApi.get(`/pokemon/${id}`);
+    return response.data;
   }
 );
 
 const pokemonSlice = createSlice({
   name: 'pokemon',
-  initialState: { pokemons: [], isLoading: false },
+  initialState: {
+    pokemon: null,
+    isLoading: false,
+    error: null,
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPokemons.pending, (state) => {
+      .addCase(fetchPokemon.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
-      .addCase(fetchPokemons.fulfilled, (state, action) => {
+      .addCase(fetchPokemon.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.pokemons = action.payload;
+        state.pokemon = action.payload;
+      })
+      .addCase(fetchPokemon.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });

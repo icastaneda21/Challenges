@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const QuoteComponent = ({ counter }) => {
   const [quote, setQuote] = useState('');
@@ -8,10 +9,9 @@ const QuoteComponent = ({ counter }) => {
     console.log(`Fetching quote with counter: ${counter}`);
     setIsLoading(true);
 
-    fetch(`https://breakingbadapi.com/api/quotes/${counter}`)
+    fetch(`https://api.breakingbadquotes.xyz/v1/quotes/${counter}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log('Data fetched:', data);
         setQuote(data[0]?.quote || 'No quote found');
         setIsLoading(false);
       })
@@ -30,6 +30,11 @@ const QuoteComponent = ({ counter }) => {
       )}
     </div>
   );
+};
+
+// Agrega las validaciones de propTypes
+QuoteComponent.propTypes = {
+  counter: PropTypes.number.isRequired,
 };
 
 export default QuoteComponent;
