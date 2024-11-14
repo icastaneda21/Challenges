@@ -1,0 +1,35 @@
+/* src/components/styles/AddToDo.css */
+
+.add-todo-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-todo-form input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+  }
+  
+  .add-todo-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #3f51b5;
+    color: #ffffff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-todo-form button:hover {
+    background-color: #303f9f;
+  }
+  
+  .add-todo-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  

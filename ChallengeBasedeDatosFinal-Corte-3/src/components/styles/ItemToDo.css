@@ -1,0 +1,38 @@
+/* src/components/styles/ItemToDo.css */
+
+.todo-item {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.todo-item.completed td:nth-child(2) {
+  text-decoration: line-through;
+  color: #999999;
+}
+
+.todo-item td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.todo-item input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+.todo-item button {
+  background-color: #e53935;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.todo-item button:hover {
+  background-color: #c62828;
+}
+
+.todo-item button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
